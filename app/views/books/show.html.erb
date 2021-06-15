@@ -1,0 +1,23 @@
+<!--#新規投稿-->
+<h1>New Book</h1>
+<%= form_with model: @book, local:true do |f| %>
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+  <h4>Opinion</h4>
+  <%= f.text_area :body %>
+  <%= f.submit 'Create Book' %>
+<% end %>
+
+
+<!--#編集画面-->
+<div class="book-body">
+  <p>投稿ユーザー画像：<%= image_tag('maxresdefault.jpg') %></p>
+  <p>ユーザーネーム：<%= @book.user.name %></p>
+  <p>Title：<%= @book.title %></p>
+  <p>Opinion：<%= @book.body %></p>
+
+  <% if @book.user == current_user %>
+    <%= link_to "Edit", edit_book_path(@book) %>
+    <%= link_to "Destroy", book_path(@book), method: :delete %>
+  <% end %>
+</div>
