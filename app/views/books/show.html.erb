@@ -11,7 +11,7 @@
 
 <!--#編集画面-->
 <div class="book-body">
-  <p>投稿ユーザー画像：<%= image_tag('maxresdefault.jpg') %></p>
+  <%= attachment_image_tag @book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
   <p>ユーザーネーム：<%= @book.user.name %></p>
   <p>Title：<%= @book.title %></p>
   <p>Opinion：<%= @book.body %></p>

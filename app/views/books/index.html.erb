@@ -1,3 +1,13 @@
+
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のerrorが発生しました
+  <% @book.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
+
+
 <!--#新規投稿-->
 <h1>New Book</h1>
 <%= form_with model: @book, local:true do |f| %>
@@ -12,7 +22,7 @@
 <!--#一覧-->
 <% @books.each do |book| %>
 <div>
-  <p>投稿ユーザー画像：<%= image_tag('maxresdefault.jpg') %></p>
+  <%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
   <%= link_to book_path(book.id) do %>
   <p>Title：<%= book.title %></p>
   <% end %>
@@ -20,4 +30,6 @@
   <p>ユーザーネーム：<%= book.user.name %></p>
 </div>
 <% end %>
+
+<%= paginate @books %>
 
