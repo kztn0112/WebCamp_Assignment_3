@@ -1,23 +1,36 @@
-<!--#新規投稿-->
-<h1>New Book</h1>
-<%= form_with model: @book, local:true do |f| %>
-  <h4>Title</h4>
-  <%= f.text_field :title %>
-  <h4>Opinion</h4>
-  <%= f.text_area :body %>
-  <%= f.submit 'Create Book' %>
-<% end %>
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+
+  <div class="col-md-3">
+   <%= render 'books/list', book: @newbook,user: @user %>
+  </div>
 
 
-<!--#編集画面-->
-<div class="book-body">
-  <%= attachment_image_tag @book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-  <p>ユーザーネーム：<%= @book.user.name %></p>
-  <p>Title：<%= @book.title %></p>
-  <p>Opinion：<%= @book.body %></p>
+<div class="col-md-8 offset-md-1">
+ <h2>Book detail</h2>
 
-  <% if @book.user == current_user %>
-    <%= link_to "Edit", edit_book_path(@book) %>
-    <%= link_to "Destroy", book_path(@book), method: :delete %>
-  <% end %>
+  <table class="table">
+  <tbody>
+    <tr>
+      <td>
+      <%= attachment_image_tag @book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+      <br>
+      <%= @book.user.name %>
+      </td>
+      <td><%= @book.title %></td>
+      <td><%= @book.body %></td>
+      <% if @book.user == current_user %>
+      <td><%= link_to "Edit", edit_book_path(@book) %></td>
+      <td> <%= link_to "Destroy", book_path(@book), method: :delete %></td>
+      <% end %>
+    </tr>
+  </tbody>
+  </table>
 </div>
+
+</div>
+</div>
+
+
+

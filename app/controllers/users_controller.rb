@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
   def index
    @users  = User.page(params[:page]).reverse_order
-   @user =User.new
+   @user =current_user
+   @book=Book.new
   end
 
   def show
     @user= User.find(params[:id])
-    @books = @user.books.page(params[:page]).reverse_order #kaminari install
+    @book=Book.new
+    @books = @user.books.page(params[:page]).reverse_order
   end
 
   def edit
@@ -17,6 +19,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
      redirect_to user_path(@user.id)
+     flash[:notice] = "You have updated user successfully."
     else
      render:edit
     end

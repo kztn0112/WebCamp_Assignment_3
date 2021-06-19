@@ -7,6 +7,14 @@ class ApplicationController < ActionController::Base
     user_path(current_user)
   end
 
+  def create
+   flash[:notice] = "Signed in successfully."
+  end
+
+  def destroy
+   flash[:notice] = "Signed out successfully."
+  end
+
   protected
 
   def configure_permitted_parameters
