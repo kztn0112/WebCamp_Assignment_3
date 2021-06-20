@@ -29,16 +29,12 @@
   </table>
 
 
-  <% if user.id == current_user.id %>
-
-    <p><%= link_to "プロフィール編集", edit_user_path(user) %></p>
-    <% else %>
-    <p><%= link_to "プロフィール編集", user_path(current_user) %></p>
-  <% end %>
+<!--＃書き換え-->
+  <p><%= link_to "", edit_user_path(@user.id),class:"fas fa-user-cog" %></p>
 
 
 <!--#新規投稿-->
-<h1>New Book</h1>
+<h2>New book</h2>
 <%= form_with model:book, local:true do |f| %>
   <div class="form-group">
     <h4>Title</h4>

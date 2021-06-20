@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://kit.fontawesome.com/ff8be2fc38.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="application.scss" />
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,47 +12,79 @@
   </head>
 
 
-  <body class="d-flex flex-column vh-100">
-    <header class="bg-dark text-white pt-5 pb-4">
-      <nav class="navbar navbar-expand-lg navbar-light">
+  <body>
+  <header>
+
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-          <%= link_to "Bookers", root_path %>
+          <a class="navbar-brand" href="/"><span>Bookers</span></a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
 
 
 
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav ml-auto">
+
             <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to "Home", user_path(current_user)  %>
+              <%= link_to user_path(current_user), class:"Home-icon" do %>
+              <i class="fas fa-home"></i>
+              <span>Home</span>
+              <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to "Users", users_path  %>
+              <%= link_to users_path,class:"Users-icon" do %>
+               <i class="fas fa-users"></i>
+              <span>Users</span>
+              <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to "Books", books_path %>
+              <%= link_to books_path,class:"books-icon" do %>
+              <i class="fas fa-book-open"></i>
+              <span>Books</span>
+              <% end %>
             </li>
 
             <li class="nav-item">
-              <%=link_to "logout", destroy_user_session_path, method: :delete  %>
+              <%=link_to destroy_user_session_path, method: :delete,class:"logout-icon" do %>
+              <i class="fas fa-sign-out-alt"></i>
+              <span>logout</span>
+              <% end %>
             </li>
+
             <% else %>
             <li class="nav-item">
-              <%= link_to "Home", root_path %>
+               <%= link_to root_path, class:"Home-icon" do %>
+              <i class="fas fa-home"></i>
+              <span>Home</span>
+              <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to "About", home_about_path %>
+               <%= link_to home_about_path, class:"about-icon" do %>
+              <i class="fas fa-link"></i>
+              <span>About</span>
+              <% end %>
             </li>
 
             <li class="nav-item">
-              <%= link_to "sign up", new_user_registration_path %>
+            <%= link_to new_user_registration_path, class:"signup-icon" do %>
+              <i class="fas fa-user-plus"></i>
+              <span>sign up</span>
+              <% end %>
             </li>
 
             <li class="nav-item">
-              <%= link_to "login", new_user_session_path %>
+              <%= link_to new_user_session_path, class:"login-icon" do %>
+              <i class="fas fa-sign-in-alt"></i>
+              <span>login</span>
+              <% end %>
             </li>
             <% end %>
             </ul>
+
           </div>
         </div>
       </nav>
@@ -66,10 +100,19 @@
     <main class="mb-auto">
     <%= yield %>
     </main>
-    <footer class="bg-dark text-white pt-5 pb-4">
-          <div class="col-md-4">
-            <p>CopyRight Infratop.inc</p>
-          </div>
-    </footer>
+
+
+    <footer>
+
+    <div class="container mt-5">
+  	<div class="row">
+    	<div class="mx-auto">
+    		<p>CopyRight Infratop.inc</p>
+    	</div>
+    </div>
+    </div>
+
+
+  </footer>
   </body>
 </html>

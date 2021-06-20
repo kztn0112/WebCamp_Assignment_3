@@ -17,6 +17,7 @@ class BooksController < ApplicationController
    @books  = Book.page(params[:page]).reverse_order
    @book =Book.new
    @user=current_user
+   @bookuser = @book.user
   end
 
   def show

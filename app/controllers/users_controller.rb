@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @books = @user.books.page(params[:page]).reverse_order
   end
 
+# ＃書き換え
   def edit
     @user = User.find(params[:id])
   end
