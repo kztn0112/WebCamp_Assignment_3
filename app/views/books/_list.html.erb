@@ -29,7 +29,7 @@
   </table>
 
 
-<%= link_to "", edit_user_path(@user.id),class:"fas fa-user-cog" %></p>
+<%= link_to "", edit_user_path(user.id),class:"fas fa-user-cog btn btn-info"%>
 
 
 <!--#新規投稿-->
@@ -45,5 +45,5 @@
   <%= f.text_area :body %>
   </div>
 
-  <%= f.submit 'Create Book' %>
+  <%= f.submit 'Create Book' ,class:"btn btn-secondary" %>
 <% end %>

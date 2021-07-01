@@ -17,7 +17,6 @@ class BooksController < ApplicationController
    @books  = Book.page(params[:page]).reverse_order
    @book =Book.new
    @user=current_user
-   @bookuser = @book.user
   end
 
   def show
@@ -44,8 +43,8 @@ class BooksController < ApplicationController
   end
 
   def destroy
-   @book = Book.find(params[:id])
-   @book.destroy
+   book = Book.find(params[:id])
+   book.destroy
    redirect_to books_path
   end
 
@@ -54,8 +53,5 @@ class BooksController < ApplicationController
     params.require(:book).permit(:title, :body)
   end
 
-  def user_params
-    params.require(:user).permit(:name, :profile_image,:introduction)
-  end
 end
 
